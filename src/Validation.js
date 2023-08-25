@@ -7,12 +7,8 @@ class Validation extends Component {
     squareStyles: {},
   }
 
-  constructor(props) {
-    super(props);
-  }
-
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.position != prevState.position && nextProps.destination != prevState.destination) {
+    if (nextProps.position !== prevState.position && nextProps.destination !== prevState.destination) {
       return {position: nextProps.position, destination: nextProps.destination, squareStyles: {[nextProps.destination]: { backgroundColor: "deepPink" }}};
     }
   }
@@ -37,7 +33,7 @@ class Validation extends Component {
     // if need store & display move history
 
 
-    if (sourceSquare == this.state.destination) {
+    if (sourceSquare === this.state.destination) {
       alert('You has win, please click Reset to start a new game!');
       return;
     }
@@ -46,7 +42,7 @@ class Validation extends Component {
       position: {[targetSquare]: 'wN'},
     }));
 
-    if (targetSquare == this.state.destination) {
+    if (targetSquare === this.state.destination) {
       alert('You win!');
     }
   };

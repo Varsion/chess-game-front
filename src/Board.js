@@ -29,10 +29,14 @@ class Board extends Component {
     }));
   }
   nextStepSuggest = () => {
+    if(this.state.position === this.state.destination) {
+      alert('You won!');
+      return;
+    }
     getNextStep(this.state.position, this.state.destination).then((response) => {
       alert(`You can move Knight to ${response}`);
     }).catch((error) => {
-      console.log(error);
+      alert(error.message);
     })
   }
 

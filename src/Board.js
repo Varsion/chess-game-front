@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Chessboard from "chessboardjsx";
 import Validation from "./Validation";
+import { getNextStep } from "./api/api";
 
 class Board extends Component {
   state = {
@@ -22,6 +23,19 @@ class Board extends Component {
     }));
   }
 
+  setPare = (position) => {
+    this.setState(() => ({
+      position: position,
+    }));
+  }
+  nextStepSuggest = () => {
+    getNextStep(this.state.position, this.state.destination).then((response) => {
+      alert(`You can move Knight to ${response}`);
+    }).catch((error) => {
+      console.log(error);
+    })
+  }
+
   generatePosition = () => {
     const abscissas = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
     const ordinates = ['1', '2', '3', '4', '5', '6', '7', '8'];
@@ -37,6 +51,7 @@ class Board extends Component {
         <Validation
           position={{[position]: 'wN'}}
           destination={destination}
+          setPare={this.setPare}
         >
         {({
             position,
@@ -53,6 +68,7 @@ class Board extends Component {
 
         <button onClick={() => this.startGame()}>Start Game</button>
         <button onClick={() => this.startGame()}>Reset</button>
+        <button onClick={() => this.nextStepSuggest()}>Help </button>
       </div>
     );
   }

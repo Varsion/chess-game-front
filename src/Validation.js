@@ -38,6 +38,7 @@ class Validation extends Component {
       return;
     }
 
+    this.props.setPare(targetSquare);
     this.setState(() => ({
       position: {[targetSquare]: 'wN'},
     }));

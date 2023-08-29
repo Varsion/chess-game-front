@@ -6,6 +6,7 @@ import { getNextStep, getStraightDestination } from "../api/api";
 function Board() {
   const [position, setPosition] = useState("");
   const [destination, setDestination] = useState("");
+  const [initialPosition, setInitialPosition] = useState("");
 
   const startGame = () => {
     let initialPosition = "";
@@ -16,6 +17,7 @@ function Board() {
     } while (initialPosition === destination);
 
     setPosition(initialPosition);
+    setInitialPosition(initialPosition);
     setDestination(destination);
   }
 
@@ -69,6 +71,10 @@ function Board() {
     }
   }
 
+  const reset = () => {
+    setPosition(initialPosition);
+  }
+
   // hook for Validation component
   const setPare = (position) => {
     setPosition(position);
@@ -95,7 +101,7 @@ function Board() {
       </Validation>
 
       <button onClick={() => startGame()}>Start Game</button>
-      <button onClick={() => startGame()}>Reset</button>
+      <button onClick={() => reset()}>Reset</button>
       <br />
       <button onClick={() => nextStepSuggest()}>Suggest Next Step</button>
       <button onClick={() => straightDestination()}>Straight Destination</button>

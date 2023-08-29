@@ -8,14 +8,13 @@ class Validation extends Component {
   }
 
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.position !== prevState.position && nextProps.destination !== prevState.destination) {
-      return {position: nextProps.position, destination: nextProps.destination, squareStyles: {[nextProps.destination]: { backgroundColor: "deepPink" }}};
-    }
+    return {position: nextProps.position, destination: nextProps.destination, squareStyles:{[nextProps.destination]: { backgroundColor: "deepPink" }}};
   }
 
   onDrop = ({ sourceSquare, targetSquare }) => {
 
-    // move check
+    // split "a1" => [97, 49]
+    //            => ["a", "1"]
     let [fromAbscissa, fromOrdinate] = [sourceSquare.charCodeAt(0), sourceSquare.charCodeAt(1)]
     let [toAbscissa, toOrdinate] = [targetSquare.charCodeAt(0), targetSquare.charCodeAt(1)]
 
@@ -37,7 +36,7 @@ class Validation extends Component {
       alert('You has win, please click Reset to start a new game!');
       return;
     }
-
+    // update position to parent component
     this.props.setPare(targetSquare);
     this.setState(() => ({
       position: {[targetSquare]: 'wN'},

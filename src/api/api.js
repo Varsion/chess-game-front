@@ -14,3 +14,13 @@ export const getNextStep = async (position, destination) => {
   });
   return next_step;
 }
+
+export const getStraightDestination = async (position, destination) => {
+  let { data: { steps } } = await api.get("next_step", {
+    params: {
+      position,
+      destination,
+    }
+  });
+  return steps;
+}

@@ -75,17 +75,13 @@ function Board() {
     setPosition(initialPosition);
   }
 
-  // hook for Validation component
-  const setPare = (position) => {
-    setPosition(position);
-  }
 
   return (
     <div>
       <Validation
         position={{[position]: 'wN'}}
         destination={destination}
-        setPare={() => setPare()}
+        setPare={(position) => setPosition(position)}
       >
       {({
           position,
